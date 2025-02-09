@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const promises_1 = require("node:fs/promises");
 const node_fs_1 = require("node:fs");
-const notesRoot = 'D:/Logseq-notas/pages';
-const backupDirectory = process.argv.slice(2)[0];
+const notesRoot = process.argv.slice(2)[0];
+const backupDirectory = process.argv.slice(2)[1];
 async function OrganizeNotes() {
     const notes = await (0, promises_1.readdir)(notesRoot);
     for (let c = 0; c < notes.length; c++) {
@@ -13,18 +13,18 @@ async function OrganizeNotes() {
             continue;
         }
         ;
-        const file = await (0, promises_1.readFile)(`D:/Logseq-notas/pages/${notes[c]}`);
+        const file = await (0, promises_1.readFile)(`${notesRoot}/${notes[c]}`);
         const fileContent = file.toString('utf-8');
         const filePrefix = notes[c].match(/\[(.*?)\]/);
         if (filePrefix) {
             const folderName = filePrefix[1].trim();
             const fileName = filePrefix.input.trim();
-            if ((0, node_fs_1.existsSync)(`D:/loqseq-backup/${folderName[1]}`)) {
-                await WriteFile(`${backupDirectory}${folderName}/${fileName}`, fileContent);
+            if ((0, node_fs_1.existsSync)(`${backupDirectory}/${folderName[1]}`)) {
+                await WriteFile(`${backupDirectory}/${folderName}/${fileName}`, fileContent);
             }
             else {
-                await (0, promises_1.mkdir)(`${backupDirectory}${folderName}`, { recursive: true });
-                await WriteFile(`${backupDirectory}${folderName}/${fileName}`, fileContent);
+                await (0, promises_1.mkdir)(`${backupDirectory}/${folderName}`, { recursive: true });
+                await WriteFile(`${backupDirectory}/${folderName}/${fileName}`, fileContent);
             }
         }
         else {
