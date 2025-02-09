@@ -23,8 +23,11 @@ in the second. This creates different folders!
 After adding the prefix correctly, clone the project and run it:
 
 ```sh
-node dist/index.js D:/loqseq-backup/
+node dist/index.js D:/Logseq-notas/pages D:/loqseq-backup/
 ```
 > Make sure to be in the correct directory.
 
 The parameter: `D:/loqseq-backup/` is the directory of **backup**. In my machine is `D:/loqseq-backup/`, but you can choose any directory for this. 
+
+The parameter: `D:/Logseq-notas/pages` is the root directory of notes in my machine. Make sure to pass
+the root directory of your machine.
