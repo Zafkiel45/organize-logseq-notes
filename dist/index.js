@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const promises_1 = require("node:fs/promises");
 const node_fs_1 = require("node:fs");
 const notesRoot = 'D:/Logseq-notas/pages';
-const backupDirectory = 'D:/loqseq-backup/';
+const backupDirectory = process.argv.slice(2)[0];
 async function OrganizeNotes() {
     const notes = await (0, promises_1.readdir)(notesRoot);
     for (let c = 0; c < notes.length; c++) {

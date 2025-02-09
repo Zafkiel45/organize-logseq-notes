@@ -2,7 +2,7 @@ import { writeFile, readFile, mkdir,  readdir , stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 
 const notesRoot = 'D:/Logseq-notas/pages';
-const backupDirectory = 'D:/loqseq-backup/'
+const backupDirectory = process.argv.slice(2)[0];
 
 async function OrganizeNotes() {
     
